@@ -1,0 +1,119 @@
+.aboutSection {
+  padding: 4rem 0;
+}
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 2rem;
+}
+
+.contentWrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 3rem;
+  align-items: center;
+}
+
+.imageContainer {
+  width: 100%;
+  max-width: 400px;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+  margin-top: 40px;
+}
+
+.profileImage {
+  width: 100%;
+  height: auto;
+  display: block;
+  transition: transform 0.3s ease;
+  
+}
+
+.profileImage:hover {
+  transform: scale(1.02);
+}
+
+.bioContent {
+  flex: 1;
+}
+
+.bioTitle {
+  font-size: 2rem;
+  margin-bottom: 1.5rem;
+  color: #2d3748;
+  line-height: 1.3;
+}
+
+.bioText {
+  font-size: 1.1rem;
+  line-height: 1.6;
+  color: #4a5568;
+  margin-bottom: 2rem;
+}
+
+.skillSection {
+  margin-bottom: 2rem;
+}
+
+.skillTitle {
+  font-size: 1.5rem;
+  color: #2d3748;
+  margin-bottom: 0.5rem;
+  position: relative;
+  padding-bottom: 0.5rem;
+}
+
+.skillTitle::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 50px;
+  height: 3px;
+  background: #0f0f0f;
+}
+
+.skillList {
+  margin-left: 1.5rem;
+  line-height: 1.6;
+}
+
+.skillList li {
+  margin-bottom: 0.5rem;
+}
+
+.skillListColumns {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+  gap: 1rem;
+  list-style: none;
+  padding: 0;
+}
+
+.closingStatement {
+  font-size: 1.1rem;
+  line-height: 1.6;
+  color: #4a5568;
+  margin-top: 2rem;
+  padding-top: 1.5rem;
+  border-top: 1px solid #e2e8f0;
+}
+
+@media (min-width: 768px) {
+  .contentWrapper {
+    flex-direction: row;
+    align-items: flex-start;
+    gap: 4rem;
+  }
+  
+  .bioTitle {
+    font-size: 2.5rem;
+  }
+  
+  .skillListColumns {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}

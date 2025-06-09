@@ -1,0 +1,157 @@
+/* header.module.css */
+.header {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  padding: 0 5%; /* Space at edges */
+}
+
+.headerContainer {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  align-items: center;
+  gap: 2rem; /* Reduced from 4rem to bring text/image closer */
+  width: 100%;
+  max-width: 1400px; /* Prevent over-stretching on wide screens */
+  margin: 0 auto; /* Center container */
+}
+
+.headerLeft {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding-right: 1rem; /* Small right padding for text */
+}
+
+.headerLeft h1 {
+  font-size: 2.8rem;
+  font-weight: 700;
+  line-height: 1.2;
+  margin-bottom: 1.5rem;
+  color: #000;
+}
+
+.headerLeft p {
+  margin: 1.5rem 0 2.5rem;
+  font-size: 1.1rem;
+  line-height: 1.7;
+  color: #4b5563;
+  max-width: 90%;
+}
+
+.headerCta {
+  display: flex;
+  gap: 1.5rem;
+}
+
+.headerRight {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding-left: 1rem; /* Small left padding for image */
+}
+
+.headerImage {
+  width: 100%;
+  height: auto;
+  max-height: 70vh;
+  object-fit: contain;
+  animation: float 6s ease-in-out infinite;
+}
+
+/* Button Base Styles */
+.btn {
+  display: inline-block;
+  padding: 0.8rem 2rem;
+  border-radius: 50px;
+  font-weight: 600;
+  font-size: 1rem;
+  text-align: center;
+  text-decoration: none; /* This removes underline */
+  cursor: pointer;
+  transition: all 0.3s ease;
+  border: 2px solid transparent;
+}
+
+/* Button 1 - Solid Black */
+.btn1 {
+  background-color: #000;
+  color: white;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  border-radius: 25rem;
+  padding: 10px;
+  height: 25px;
+}
+
+.btn1:hover {
+  background-color: #333;
+  transform: translateY(-2px);
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+  text-decoration: none; /* Ensures no underline on hover */
+}
+
+/* Button 2 - Black Text Outline */
+.btn2 {
+  background-color: transparent;
+  color: #000;
+  border: 2px solid white;
+  border-radius: 25rem;
+  padding: 10px;
+  height: 25px;
+  font-weight: 600; /* Add this line - makes text bold */
+  /* or use font-weight: 800; for extra bold */
+}
+
+/* If you want the hover state to maintain the same thickness */
+.btn2:hover {
+  background-color: rgba(0, 0, 0, 0.05);
+  transform: translateY(-2px);
+  font-weight: 700; /* Consistent weight on hover */
+}
+
+@keyframes float {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-15px); }
+}
+
+@media (max-width: 1024px) {
+  .headerContainer {
+    grid-template-columns: 1fr;
+    gap: 2rem;
+  }
+  
+  .headerLeft {
+    align-items: center;
+    text-align: center;
+    padding-right: 0;
+  }
+  
+  .headerLeft p {
+    max-width: 100%;
+  }
+  
+  .headerCta {
+    justify-content: center;
+    
+  }
+  
+  .headerRight {
+    padding-left: 0;
+    margin-top: 1rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .headerLeft h1 {
+    font-size: 2.2rem;
+  }
+  
+  .headerCta {
+    flex-direction: column;
+    gap: 1rem;
+  }
+  
+  .header {
+    padding: 0 1.5rem; /* Less side padding on mobile */
+  }
+}

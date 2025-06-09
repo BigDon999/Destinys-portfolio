@@ -1,0 +1,62 @@
+.sectionHeader {
+  text-align: center;
+  margin-bottom: 3rem;
+  padding: 0 1rem;
+}
+
+.sectionHeader h3 {
+  font-size: 2rem;
+  font-weight: 700;
+  color: #2d3748;
+  margin-bottom: 0.75rem;
+  line-height: 1.2;
+  position: relative;
+  display: inline-block;
+}
+
+.sectionHeader h3::after {
+  content: '';
+  position: absolute;
+  width: 50%;
+  height: 3px;
+  background: #0a0a0a;
+  bottom: -8px;
+  left: 25%;
+  border-radius: 3px;
+}
+
+.sectionHeader p {
+  font-size: 1rem;
+  color: #4a5568;
+  max-width: 600px;
+  margin: 0 auto;
+  line-height: 1.6;
+}
+
+/* Animation for the underline */
+.sectionHeader h3::after {
+  transform: scaleX(0);
+  transform-origin: center;
+  transition: transform 0.3s ease;
+}
+
+.sectionHeader:hover h3::after {
+  transform: scaleX(1);
+}
+
+/* Responsive adjustments */
+@media (min-width: 768px) {
+  .sectionHeader h3 {
+    font-size: 2.5rem;
+  }
+  
+  .sectionHeader p {
+    font-size: 1.1rem;
+  }
+}
+
+@media (min-width: 1024px) {
+  .sectionHeader {
+    margin-bottom: 4rem;
+  }
+}
