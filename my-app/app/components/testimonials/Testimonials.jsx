@@ -2,10 +2,11 @@
 
 import React from 'react';
 import styles from "./Testimonials.module.css";
+// Updated imports for Swiper v11
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { Pagination } from 'swiper';
-import 'swiper/css';
-import 'swiper/css/pagination';
+import 'swiper/swiper-bundle.min.css';
+import 'swiper/modules/pagination.min.css';
 import Image from 'next/image';
 import daniel from "../../Assets/daniel.jpg";
 import priye from "../../Assets/priye.jpg";
