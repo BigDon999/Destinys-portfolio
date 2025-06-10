@@ -3,14 +3,14 @@
 import React from 'react';
 import styles from "./Testimonials.module.css";
 import { Swiper, SwiperSlide } from 'swiper/react';
-import { Pagination } from 'swiper/modules';
+import { Pagination, Autoplay } from 'swiper/modules';
 import 'swiper/css';
 import 'swiper/css/pagination';
 import Image from 'next/image';
 import daniel from "../../assets/daniel.jpg";
 import priye from "../../assets/priye.jpg";
 import megan from "../../assets/megan.jpg";
-import plantceo from "../../assets/plant ceo.jpg";
+import plantceo from "../../assets/plant-ceo.jpg"
 
 const testimonials = [
   {
@@ -43,7 +43,7 @@ const testimonials = [
     role: "Product Manager, InnovateCo",
     content: "The web application they built for us has been running flawlessly with zero downtime. Their technical expertise saved us countless hours of troubleshooting.",
     rating: 5,
-    image:  plantceo
+    image: plantceo
   }
 ];
 
@@ -55,12 +55,16 @@ function Testimonials() {
       
       <div className={styles.swiperContainer}>
         <Swiper
-          modules={[Pagination]}
+          modules={[Pagination, Autoplay]}
           spaceBetween={30}
           slidesPerView={1}
           pagination={{ clickable: true }}
           loop={true}
-          autoplay={{ delay: 5000 }}
+          autoplay={{
+            delay: 5000,
+            disableOnInteraction: false,
+            pauseOnMouseEnter: true
+          }}
           className={styles.swiper}
         >
           {testimonials.map((testimonial) => (
