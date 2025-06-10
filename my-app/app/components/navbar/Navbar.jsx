@@ -4,7 +4,6 @@ import React, { useState } from 'react';
 import Link from 'next/link';
 import { FaBars } from "react-icons/fa6";
 import { AiOutlineClose } from "react-icons/ai";
-import { GoMoon, GoSun } from "react-icons/go";  // Fixed import from 'go' instead of 'ai'
 import { usePathname } from 'next/navigation';
 import styles from "./navbar.module.css";
 

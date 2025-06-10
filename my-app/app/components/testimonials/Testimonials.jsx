@@ -3,7 +3,7 @@
 import React from 'react';
 import styles from "./Testimonials.module.css";
 import { Swiper, SwiperSlide } from 'swiper/react';
-import { Pagination } from 'swiper/modules';
+import { Pagination } from 'swiper';
 import 'swiper/css';
 import 'swiper/css/pagination';
 import Image from 'next/image';
