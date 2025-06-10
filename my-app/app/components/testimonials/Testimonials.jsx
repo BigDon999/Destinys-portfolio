@@ -7,10 +7,10 @@ import { Pagination } from 'swiper/modules';
 import 'swiper/css';
 import 'swiper/css/pagination';
 import Image from 'next/image';
-import daniel from "../../Assets/daniel.jpg";
-import priye from "../../Assets/priye.jpg";
-import megan from "../../Assets/megan.jpg";
-import plantceo from "../../Assets/plant ceo.jpg";
+import daniel from "../../assets/daniel.jpg";
+import priye from "../../assets/priye.jpg";
+import megan from "../../assets/megan.jpg";
+import plantceo from "../../assets/plant ceo.jpg";
 
 const testimonials = [
   {

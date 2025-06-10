@@ -1,7 +1,7 @@
 import Link from 'next/link'
 import styles from './header.module.css'
 import Image from 'next/image'
-import Image1 from '../../Assets/man_using_pc-removebg-preview.png'
+import Image1 from '../../assets/man_using_pc-removebg-preview.png'
 
 const Header = () => {
   return (
