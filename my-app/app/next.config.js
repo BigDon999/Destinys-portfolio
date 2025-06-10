@@ -1,20 +1,15 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   reactStrictMode: true,
-  images: {
-    unoptimized: true,
-    remotePatterns: [
-      {
-        protocol: 'https',
-        hostname: '**',
-      },
-    ],
-  },
-  // Fix for Swiper in production
   webpack: (config) => {
-    config.externals = [...config.externals, { swiper: 'swiper' }];
+    // Fix Swiper module resolution
+    config.resolve.alias = {
+      ...config.resolve.alias,
+      'swiper/react': 'swiper/react/swiper-react.js',
+      'swiper/css': 'swiper/swiper.min.css',
+      'swiper/modules': 'swiper/modules/swiper-modules.js',
+    };
     return config;
-  }
-}
-
-module.exports = nextConfig
+  },
+};
+module.exports = nextConfig;
