@@ -3,11 +3,11 @@
 import React, { useState } from 'react';
 import Link from 'next/link';
 import { FaBars } from "react-icons/fa6";
-import { AiOutlineClose } from "react-icons/ai";
+import { AiOutlineClose } from "react-icons/ai"; 
 import { usePathname } from 'next/navigation';
 import styles from "./navbar.module.css";
 
-const data = [
+const navLinks = [
     {id: 1, link:"/", caption: 'Home'},
     {id: 2, link:"/about", caption: 'About'},
     {id: 3, link:"/services", caption: 'Services'},
@@ -15,25 +15,26 @@ const data = [
     {id: 5, link:"/contact", caption: 'Contact'}
 ];
 
-
 function Navbar() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
-  const [isDarkMode, setIsDarkMode] = useState(false);
   const pathname = usePathname();
+
+  const toggleMenu = () => {
+    setIsMenuOpen(prev => !prev);
+  };
 
   return (
     <nav className={styles.nav}>
       <div className={`container ${styles.navContainer}`}>
-        {/* Logo - use Link instead of li */}
-        <Link href="/" className={styles.navlogo}>Destiny Ekine</Link>
+        <Link href="/" className={styles.navlogo} aria-label="Home">Destiny Ekine</Link>
         
-        {/* Navigation Items - moved ul outside of container div */}
         <ul className={`${styles.navItems} ${isMenuOpen ? styles.showMenu : ''}`}>
-          {data.map(({id, link, caption}) => (
+          {navLinks.map(({id, link, caption}) => (
             <li key={id}>
               <Link 
                 href={link} 
                 className={`${styles.navLink} ${pathname === link ? styles.active : ''}`}
+                onClick={() => setIsMenuOpen(false)}
               >
                 {caption}
               </Link>
@@ -42,11 +43,11 @@ function Navbar() {
         </ul>
 
         <div className={styles.navBtns}>
-          {/* Mobile Menu Toggle Button */}
           <button 
             className={styles.navBtn} 
-            onClick={() => setIsMenuOpen(!isMenuOpen)}
-            aria-label="Toggle menu"
+            onClick={toggleMenu}
+            aria-label={isMenuOpen ? "Close menu" : "Open menu"}
+            aria-expanded={isMenuOpen}
           >
             {isMenuOpen ? <AiOutlineClose /> : <FaBars />}
           </button>

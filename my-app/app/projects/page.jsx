@@ -2,6 +2,10 @@ import React from 'react';
 import styles from "./projects.module.css";
 import SectionHeader from '../components/section-header/SectionHeader';
 import { FiGithub, FiExternalLink } from 'react-icons/fi';
+import port from "../assets/port.jpg";
+import ecommerce from "../assets/ecommerce.jpg";
+import taskapp from "../assets/taskapp.jpg";
+import Image from 'next/image';
 
 const ProjectsPage = () => {
   const projects = [
@@ -12,7 +16,8 @@ const ProjectsPage = () => {
       technologies: ["React", "Next.js", "Node.js", "MongoDB"],
       githubLink: "https://github.com/yourusername/ecommerce",
       liveLink: "https://yourecommerce.com",
-      image: "/projects/ecommerce.jpg"
+      image: ecommerce,
+      imageAlt: "E-commerce website screenshot"
     },
     {
       id: 2,
@@ -21,7 +26,8 @@ const ProjectsPage = () => {
       technologies: ["React", "CSS Modules", "Framer Motion"],
       githubLink: "https://github.com/yourusername/portfolio",
       liveLink: "https://yourportfolio.com",
-      image: "/projects/portfolio.jpg"
+      image: port,
+      imageAlt: "Portfolio website screenshot"
     },
     {
       id: 3,
@@ -30,19 +36,32 @@ const ProjectsPage = () => {
       technologies: ["React", "Redux", "Firebase"],
       githubLink: "https://github.com/yourusername/task-app",
       liveLink: "https://yourtaskapp.com",
-      image: "/projects/taskapp.jpg"
+      image: taskapp,
+      imageAlt: "Task management app screenshot"
     }
   ];
 
   return (
-    <section className={styles.projectsSection}>
+    <section className={styles.projectsSection} id="projects">
       <SectionHeader title="My Projects" subtitle="My Recent Work" />
       
       <div className={styles.projectsContainer}>
         {projects.map((project) => (
           <div key={project.id} className={styles.projectCard}>
             <div className={styles.projectImage}>
-              <img src={project.image} alt={project.title} />
+              <Image 
+                src={project.image} 
+                alt={project.imageAlt}
+                width={350}
+                height={200}
+                style={{
+                  width: '100%',
+                  height: '100%',
+                  objectFit: 'cover',
+                  transition: 'transform 0.5s ease'
+                }}
+                placeholder="blur"
+              />
             </div>
             <div className={styles.projectContent}>
               <h3>{project.title}</h3>
@@ -59,7 +78,7 @@ const ProjectsPage = () => {
                   href={project.githubLink} 
                   target="_blank" 
                   rel="noopener noreferrer"
-                  aria-label="GitHub repository"
+                  aria-label={`View ${project.title} code on GitHub`}
                 >
                   <FiGithub /> Code
                 </a>
@@ -67,7 +86,7 @@ const ProjectsPage = () => {
                   href={project.liveLink} 
                   target="_blank" 
                   rel="noopener noreferrer"
-                  aria-label="Live demo"
+                  aria-label={`View ${project.title} live demo`}
                 >
                   <FiExternalLink /> Live Demo
                 </a>
