@@ -10,7 +10,7 @@ import {
 } from 'react-icons/fi';
 import styles from "./Services.module.css";
 import Image from "next/image";
-import ServicesImage from "../../assets/ServicesImage.jpg";
+import ServicesImage from '../../assets/ServicesImage.jpg';
 
 const Services = () => {
   const [activeCard, setActiveCard] = useState(0); // First card active by default
