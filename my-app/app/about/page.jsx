@@ -2,7 +2,7 @@ import React from "react";
 import Image from 'next/image';
 import styles from "./about.module.css";
 import SectionHeader from "../components/section-header/SectionHeader";
-import myPicture from "../assets/mypicture.jpg";
+import myPicture from "../../app/assets/mypicture.jpg";
 
 function AboutPage() {
   return (
