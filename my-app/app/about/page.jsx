@@ -68,7 +68,7 @@ function AboutPage() {
               <ul className={styles.skillListColumns}>
                 <li><strong>Design:</strong> canva, Figma, framer</li>
                 <li><strong>Development:</strong> VS Code, Git, npm/yarn</li>
-                <li><strong>Frameworks:</strong> React, Next.js, Tailwind CSS</li>
+                <li><strong>Frameworks:</strong> React, Next.js, CSS modules</li>
                 <li><strong>Methodologies:</strong> Mobile-first, BEM, Atomic Design</li>
               </ul>
             </div>

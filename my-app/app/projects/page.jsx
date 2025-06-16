@@ -3,7 +3,7 @@ import styles from "./projects.module.css";
 import SectionHeader from '../components/section-header/SectionHeader';
 import { FiGithub, FiExternalLink } from 'react-icons/fi';
 import port from "../assets/port.jpg";
-import ecommerce from "../assets/ecommerce.jpg";
+import ecommerce from "../assets/MyShop - Your Online Store - Google Chrome 6_16_2025 12_55_04 AM.png";
 import taskapp from "../assets/taskapp.jpg";
 import Image from 'next/image';
 
@@ -11,11 +11,11 @@ const ProjectsPage = () => {
   const projects = [
     {
       id: 1,
-      title: "E-Commerce Website",
+      title: "E-Commerce Website (Front-End)",
       description: "A full-featured online store with product filtering, cart functionality, and secure checkout.",
-      technologies: ["React", "Next.js", "Node.js", "MongoDB"],
-      githubLink: "https://github.com/yourusername/ecommerce",
-      liveLink: "https://yourecommerce.com",
+      technologies: ["React", "Next.js", "Css Modules",],
+      githubLink: "https://github.com/BigDon999/E-commerce-FrontEnd.git",
+      liveLink: "https://e-commerce-front-end-black.vercel.app/",
       image: ecommerce,
       imageAlt: "E-commerce website screenshot"
     },
