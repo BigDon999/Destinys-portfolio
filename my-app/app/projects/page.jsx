@@ -2,7 +2,7 @@ import React from 'react';
 import styles from "./projects.module.css";
 import SectionHeader from '../components/section-header/SectionHeader';
 import { FiGithub, FiExternalLink } from 'react-icons/fi';
-import port from "../assets/port.jpg";
+import blogwebsite from "../assets/blogwebsite.png"
 import ecommerce from "../assets/MyShop - Your Online Store - Google Chrome 6_16_2025 12_55_04 AM.png";
 import taskapp from "../assets/taskapp.jpg";
 import Image from 'next/image';
@@ -13,7 +13,7 @@ const ProjectsPage = () => {
       id: 1,
       title: "E-Commerce Website (Front-End)",
       description: "A full-featured online store with product filtering, cart functionality, and secure checkout.",
-      technologies: ["React", "Next.js", "Css Modules",],
+      technologies: [ "Next.js", "Css Modules",],
       githubLink: "https://github.com/BigDon999/E-commerce-FrontEnd.git",
       liveLink: "https://e-commerce-front-end-black.vercel.app/",
       image: ecommerce,
@@ -21,13 +21,13 @@ const ProjectsPage = () => {
     },
     {
       id: 2,
-      title: "Portfolio Website",
-      description: "A responsive personal portfolio showcasing my design and development skills.",
-      technologies: ["React", "CSS Modules", "Framer Motion"],
-      githubLink: "https://github.com/yourusername/portfolio",
-      liveLink: "https://yourportfolio.com",
-      image: port,
-      imageAlt: "Portfolio website screenshot"
+      title: "Blog Website",
+      description: "A responsive news blog that displays real time news, you can login and signup, has bookmark section, profile and settings.this is to showcase my use with Api's and more. ",
+      technologies: ["Next.js", "CSS Modules", "API'S"],
+      githubLink: "https://github.com/BigDon999/Blog-Website.git",
+      liveLink: "https://blog-website-eight-eta.vercel.app/",
+      image: blogwebsite,
+      imageAlt: "Blog website screenshot"
     },
     {
       id: 3,
