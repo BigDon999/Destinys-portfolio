@@ -4,7 +4,7 @@ import SectionHeader from '../components/section-header/SectionHeader';
 import { FiGithub, FiExternalLink } from 'react-icons/fi';
 import blogwebsite from "../assets/blogwebsite.png"
 import ecommerce from "../assets/MyShop - Your Online Store - Google Chrome 6_16_2025 12_55_04 AM.png";
-import taskapp from "../assets/taskapp.jpg";
+import homehero from "../assets/homehero.png"
 import Image from 'next/image';
 
 const ProjectsPage = () => {
@@ -31,12 +31,12 @@ const ProjectsPage = () => {
     },
     {
       id: 3,
-      title: "Task Management App",
-      description: "A productivity application for organizing tasks with drag-and-drop functionality.",
+      title: "Real Estate Website",
+      description: "A responsiveproperty listing Real Estatewebsite.",
       technologies: ["React", "Redux", "Firebase"],
-      githubLink: "https://github.com/yourusername/task-app",
-      liveLink: "https://yourtaskapp.com",
-      image: taskapp,
+      githubLink: "https://github.com/BigDon999/Real-Estate-Website-Front-End.git",
+      liveLink: "https://real-estate-website-front-end-fct7.vercel.app/",
+      image: homehero,
       imageAlt: "Task management app screenshot"
     }
   ];
