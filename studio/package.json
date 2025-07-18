@@ -19,7 +19,9 @@
     "react": "^19.1",
     "react-dom": "^19.1",
     "sanity": "^4.0.1",
-    "styled-components": "^6.1.18"
+    "styled-components": "^6.1.18",
+    "next-sanity": "...",
+    "@sanity/image-url": "..."
   },
   "devDependencies": {
     "@sanity/eslint-config-studio": "^5.0.2",
