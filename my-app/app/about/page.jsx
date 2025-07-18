@@ -2,7 +2,6 @@ import React from "react";
 import Image from 'next/image';
 import styles from "./about.module.css";
 import SectionHeader from "../components/section-header/SectionHeader";
-import myPicture from "../../app/assets/mypicture.jpg";
 
 function AboutPage() {
   return (
@@ -12,7 +11,7 @@ function AboutPage() {
         <article className={styles.contentWrapper}>
           <div className={styles.imageContainer}>
             <Image 
-              src={myPicture} 
+              src={"/assets/mypicture.jpg"}
               alt="Destiny Ekine - Designer and Developer" 
               width={400}
               height={500}
