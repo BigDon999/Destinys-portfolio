@@ -7,10 +7,6 @@ import { Pagination, Autoplay } from 'swiper/modules';
 import 'swiper/css';
 import 'swiper/css/pagination';
 import Image from 'next/image';
-import daniel from '../../assets/daniel.jpg';
-import priye from '../../assets/priye.jpg';
-import megan from '../../assets/megan.jpg';
-import plantceo from '../../assets/plant-ceo.jpg';
 
 const testimonials = [
   {
@@ -19,7 +15,7 @@ const testimonials = [
     role: "CEO, DesignHub",
     content: "Working with this team transformed our online presence. Our website traffic increased by 300% within three months of launch, and the design perfectly captures our brand identity.",
     rating: 5,
-    image: megan
+    image: "/assets/megan.jpg"
   },
   {
     id: 2,
@@ -27,7 +23,7 @@ const testimonials = [
     role: "Marketing Director, TechSolutions",
     content: "The development team delivered our project ahead of schedule while maintaining exceptional quality. Their attention to detail and problem-solving skills are unmatched in the industry.",
     rating: 5,
-    image: daniel
+    image: "/assets/daniel.jpg"
   },
   {
     id: 3,
@@ -35,7 +31,7 @@ const testimonials = [
     role: "Founder, CreativeMinds",
     content: "I was blown away by the logo designs presented to us. They managed to capture exactly what we wanted before we even knew how to articulate it. Truly talented designers!",
     rating: 4,
-    image: priye
+    image: "/assets/priye.jpg"
   },
   {
     id: 4,
@@ -43,7 +39,7 @@ const testimonials = [
     role: "Product Manager, InnovateCo",
     content: "The web application they built for us has been running flawlessly with zero downtime. Their technical expertise saved us countless hours of troubleshooting.",
     rating: 5,
-    image: plantceo
+    image: "/assets/plant-ceo.jpg"
   }
 ];
 

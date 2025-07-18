@@ -10,7 +10,6 @@ import {
 } from 'react-icons/fi';
 import styles from "./Services.module.css";
 import Image from "next/image";
-import ServicesImage from '../../assets/ServicesImage.jpg';
 
 const Services = () => {
   const [activeCard, setActiveCard] = useState(0); // First card active by default
@@ -75,7 +74,7 @@ const Services = () => {
       
       <div className={styles.imageContainer}>
         <Image 
-          src={ServicesImage}
+          src={"/assets/ServicesImage.jpg"}
           alt={services[activeCard]?.title || "Our Services"} 
           width={400}
           height={400}

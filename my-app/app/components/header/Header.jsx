@@ -1,7 +1,6 @@
 import Link from 'next/link'
 import styles from './header.module.css'
 import Image from 'next/image'
-import Image1 from '../../assets/man_using_pc-removebg-preview.png'
 
 const Header = () => {
   return (
@@ -21,7 +20,7 @@ const Header = () => {
         </div>
         <div className={styles.headerRight}>
           <Image 
-            src={Image1} 
+            src={"/assets/man_using_pc-removebg-preview.png"} 
             alt="Web designer working" 
             priority
             className={styles.headerImage}
