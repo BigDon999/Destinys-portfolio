@@ -1,3 +1,5 @@
+export const revalidate = 60; // Rebuilds the page every 60 seconds
+
 import React from 'react';
 import styles from "./projects.module.css";
 import SectionHeader from '../components/section-header/SectionHeader';
@@ -8,7 +10,7 @@ const hardcodedProjects = [
     id: 1,
     title: "E-Commerce Website (Front-End)",
     description: "A full-featured online store with product filtering, cart functionality, and secure checkout.",
-    technologies: [ "Next.js", "Css Modules",],
+    technologies: [ "Next.js", "Css Modules"],
     githubLink: "https://github.com/BigDon999/E-commerce-FrontEnd.git",
     liveLink: "https://e-commerce-front-end-black.vercel.app/",
     image: "/assets/MyShop - Your Online Store - Google Chrome 6_16_2025 12_55_04 AM.png",
@@ -17,7 +19,7 @@ const hardcodedProjects = [
   {
     id: 2,
     title: "Blog Website",
-    description: "A responsive news blog that displays real time news, you can login and signup, has bookmark section, profile and settings.this is to showcase my use with Api's and more. ",
+    description: "A responsive news blog that displays real time news, you can login and signup, has bookmark section, profile and settings. This is to showcase my use with APIs and more.",
     technologies: ["Next.js", "CSS Modules", "API'S"],
     githubLink: "https://github.com/BigDon999/Blog-Website.git",
     liveLink: "https://blog-website-eight-eta.vercel.app/",
@@ -27,7 +29,7 @@ const hardcodedProjects = [
   {
     id: 3,
     title: "Real Estate Website",
-    description: "A responsiveproperty listing Real Estatewebsite.",
+    description: "A responsive property listing Real Estate website.",
     technologies: ["React", "Redux", "Firebase"],
     githubLink: "https://github.com/BigDon999/Real-Estate-Website-Front-End.git",
     liveLink: "https://real-estate-website-front-end-fct7.vercel.app/",
