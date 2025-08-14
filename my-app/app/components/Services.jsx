@@ -14,12 +14,7 @@ const Services = () => {
   const [activeCard, setActiveCard] = useState(0); // First card active by default
 
   const services = [
-    {
-      icon: <FiPenTool size={20} />,
-      title: "Graphic Design",
-      description:
-        "Custom illustrations, branding, and print-ready designs that capture your vision perfectly.",
-    },
+   
     {
       icon: <FiFeather size={20} />,
       title: "Logo Design",
@@ -235,7 +230,7 @@ const Services = () => {
 
         <div style={imageContainerStyle} className="image-container">
           <Image
-            src={"/assets/Services.png"}
+            src={"/assets/services.png"}
             alt={services[activeCard]?.title || "Our Services"}
             width={400}
             height={320}
