@@ -270,7 +270,7 @@ export default function Hero() {
         }
         @media (min-width: 1024px) {
           .hero-header {
-            font-size: 4.2rem !important;
+            font-size: 4rem !important;
           }
           .hero-subtext {
             font-size: 1.7rem !important;
