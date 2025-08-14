@@ -90,7 +90,6 @@ export default function ProjectsPage() {
               color: "#fff",
               fontSize: "2.5rem",
               fontWeight: 700,
-              
               marginBottom: "0.5rem",
             }}
           >
@@ -101,6 +100,7 @@ export default function ProjectsPage() {
           </p>
         </div>
       </div>
+
       <div
         style={{
           display: "grid",
@@ -113,7 +113,7 @@ export default function ProjectsPage() {
           boxSizing: "border-box",
         }}
       >
-        {projects.map((project) => (
+        {projects.map((project, index) => (
           <div
             key={project.id}
             style={{
@@ -126,6 +126,9 @@ export default function ProjectsPage() {
               border: "1px solid rgba(255, 255, 255, 0.08)",
               position: "relative",
               cursor: "pointer",
+              animation: `slideInUp 0.8s ease forwards`,
+              animationDelay: `${index * 0.15}s`,
+              opacity: 0,
             }}
             onMouseEnter={(e) => {
               e.currentTarget.style.transform = "translateY(-12px) scale(1.03)";
@@ -173,13 +176,7 @@ export default function ProjectsPage() {
                 />
               )}
             </div>
-            <div
-              style={{
-                padding: "1.5rem",
-                position: "relative",
-                zIndex: 1,
-              }}
-            >
+            <div style={{ padding: "1.5rem", position: "relative", zIndex: 1 }}>
               <h3
                 style={{
                   color: "#ffffff",
@@ -202,6 +199,7 @@ export default function ProjectsPage() {
               >
                 {project.description}
               </p>
+
               {project.technologies && (
                 <div
                   style={{
@@ -242,12 +240,8 @@ export default function ProjectsPage() {
                   ))}
                 </div>
               )}
-              <div
-                style={{
-                  display: "flex",
-                  gap: "1rem",
-                }}
-              >
+
+              <div style={{ display: "flex", gap: "1rem" }}>
                 {project.githubLink && (
                   <a
                     href={project.githubLink}
@@ -265,23 +259,6 @@ export default function ProjectsPage() {
                       transition: "all 0.3s ease",
                       position: "relative",
                       overflow: "hidden",
-                    }}
-                    onMouseEnter={(e) => {
-                      e.target.style.background =
-                        "linear-gradient(145deg, #2a2a2a, #3a3a3a)";
-                      e.target.style.borderColor = "rgba(255, 255, 255, 0.3)";
-                      e.target.style.color = "#f8f9fa";
-                      e.target.style.transform = "translateY(-2px)";
-                      e.target.style.boxShadow =
-                        "0 4px 12px rgba(0, 0, 0, 0.3)";
-                    }}
-                    onMouseLeave={(e) => {
-                      e.target.style.background =
-                        "linear-gradient(145deg, #1a1a1a, #2a2a2a)";
-                      e.target.style.borderColor = "rgba(255, 255, 255, 0.1)";
-                      e.target.style.color = "#ffffff";
-                      e.target.style.transform = "translateY(0)";
-                      e.target.style.boxShadow = "none";
                     }}
                   >
                     GitHub
@@ -305,23 +282,6 @@ export default function ProjectsPage() {
                       position: "relative",
                       overflow: "hidden",
                     }}
-                    onMouseEnter={(e) => {
-                      e.target.style.background =
-                        "linear-gradient(145deg, #2a2a2a, #3a3a3a)";
-                      e.target.style.borderColor = "rgba(255, 255, 255, 0.3)";
-                      e.target.style.color = "#f8f9fa";
-                      e.target.style.transform = "translateY(-2px)";
-                      e.target.style.boxShadow =
-                        "0 4px 12px rgba(0, 0, 0, 0.3)";
-                    }}
-                    onMouseLeave={(e) => {
-                      e.target.style.background =
-                        "linear-gradient(145deg, #1a1a1a, #2a2a2a)";
-                      e.target.style.borderColor = "rgba(255, 255, 255, 0.1)";
-                      e.target.style.color = "#ffffff";
-                      e.target.style.transform = "translateY(0)";
-                      e.target.style.boxShadow = "none";
-                    }}
                   >
                     Live Demo
                   </a>
@@ -333,7 +293,17 @@ export default function ProjectsPage() {
       </div>
 
       <style jsx>{`
-        /* Prevent horizontal scrolling */
+        @keyframes slideInUp {
+          0% {
+            transform: translateY(50px);
+            opacity: 0;
+          }
+          100% {
+            transform: translateY(0);
+            opacity: 1;
+          }
+        }
+
         * {
           box-sizing: border-box;
         }
@@ -345,56 +315,12 @@ export default function ProjectsPage() {
         @media (max-width: 768px) {
           section {
             padding: 3rem 0 !important;
-            overflow-x: hidden;
-            width: 100%;
           }
 
           div[style*="grid-template-columns"] {
             grid-template-columns: 1fr !important;
             gap: 1.5rem !important;
             padding: 1rem !important;
-            margin: 0 auto !important;
-            max-width: calc(100vw - 2rem) !important;
-            width: 100% !important;
-          }
-
-          div[style*="padding: 1.5rem"] {
-            padding: 1rem !important;
-          }
-
-          h3 {
-          margin-top: 0.5rem !important;
-            font-size: 1.1rem !important;
-          }
-
-          p {
-            font-size: 0.85rem !important;
-          }
-
-          div[style*="gap: 1rem"] {
-            gap: 0.75rem !important;
-            flex-direction: column !important;
-          }
-
-          a {
-            text-align: center !important;
-            flex: 1 !important;
-            min-width: unset !important;
-          }
-        }
-
-        @media (max-width: 480px) {
-          div[style*="grid-template-columns"] {
-            margin: 0 auto !important;
-            padding: 0.75rem !important;
-            max-width: calc(100vw - 1.5rem) !important;
-            grid-template-columns: 1fr !important;
-          }
-
-          /* Ensure cards don't cause horizontal scroll */
-          div[key] {
-            max-width: 100% !important;
-            width: 100% !important;
           }
         }
       `}</style>

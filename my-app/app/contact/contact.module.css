@@ -156,6 +156,118 @@
   background: #181818;
 }
 
+/* Slide-in animation */
+@keyframes slideInUp {
+  0% {
+    transform: translateY(50px);
+    opacity: 0;
+  }
+  100% {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+/* Contact Section */
+.contactSection {
+  padding: 5rem 0;
+  background-color: #111;
+  min-height: 100vh;
+  animation: slideInUp 1s ease forwards;
+}
+
+/* Container */
+.contactContainer {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 2rem;
+  animation: slideInUp 1s ease forwards;
+  animation-delay: 0.2s;
+  opacity: 0;
+}
+
+/* Section Titles */
+.sectionTitle {
+  font-size: 2.5rem;
+  text-align: center;
+  color: #fff;
+  margin-bottom: 1rem;
+  animation: slideInUp 1s ease forwards;
+  animation-delay: 0.3s;
+  opacity: 0;
+}
+
+.sectionSubtitle {
+  text-align: center;
+  color: #b0b0b0;
+  margin-bottom: 3rem;
+  font-size: 1.1rem;
+  animation: slideInUp 1s ease forwards;
+  animation-delay: 0.4s;
+  opacity: 0;
+}
+
+/* Contact content grid */
+.contactContent {
+  background-color: #111;
+  color: #fff;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 3rem;
+  animation: slideInUp 1s ease forwards;
+  animation-delay: 0.5s;
+  opacity: 0;
+}
+
+/* Contact info blocks */
+.infoItem {
+  display: flex;
+  align-items: flex-start;
+  gap: 1.5rem;
+  background: linear-gradient(145deg, #181818, #222);
+  padding: 1.5rem;
+  border-radius: 12px;
+  box-shadow:
+    8px 8px 16px rgba(0, 0, 0, 0.4),
+    -8px -8px 16px rgba(255, 255, 255, 0.02);
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+  color: #b0b0b0;
+  animation: slideInUp 1s ease forwards;
+  animation-delay: 0.6s;
+  opacity: 0;
+}
+
+/* Hover effect */
+.infoItem:hover {
+  transform: translateY(-8px) scale(1.02);
+  box-shadow:
+    12px 20px 32px rgba(0, 0, 0, 0.6),
+    -12px -12px 24px rgba(255, 255, 255, 0.03),
+    0 0 20px rgba(255, 255, 255, 0.05);
+  border-color: rgba(255, 255, 255, 0.1);
+  background: linear-gradient(145deg, #181818, #222);
+}
+
+/* Contact form */
+.contactForm {
+  background: linear-gradient(145deg, #181818, #222);
+  border-radius: 1rem;
+  box-shadow: 0 2px 16px rgba(0, 0, 0, 0.3);
+  padding: 2rem 2.5rem 2rem 2rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  width: 100%;
+  max-width: 400px;
+  margin: 0 auto;
+  align-items: center;
+  animation: slideInUp 1s ease forwards;
+  animation-delay: 0.7s;
+  opacity: 0;
+}
+
+
 @media (max-width: 768px) {
   .sectionTitle {
     font-size: 2rem;

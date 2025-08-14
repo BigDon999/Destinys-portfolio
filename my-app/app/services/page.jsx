@@ -36,9 +36,10 @@ function SectionHeader({ title, subtitle }) {
 
 function ServicesPage() {
   const [hoveredCard, setHoveredCard] = React.useState(null);
+  const [visibleCards, setVisibleCards] = React.useState([]);
+  const cardRefs = React.useRef([]);
 
   const services = [
-    
     {
       icon: (
         <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
@@ -73,6 +74,35 @@ function ServicesPage() {
     },
   ];
 
+  // Intersection Observer for slide-in animation
+  React.useEffect(() => {
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            const cardIndex = parseInt(entry.target.dataset.cardIndex);
+            if (!visibleCards.includes(cardIndex)) {
+              // Add delay for staggered effect
+              setTimeout(() => {
+                setVisibleCards(prev => [...prev, cardIndex]);
+              }, cardIndex * 150); // 150ms delay between each card
+            }
+          }
+        });
+      },
+      {
+        threshold: 0.2,
+        rootMargin: '50px'
+      }
+    );
+
+    cardRefs.current.forEach((ref) => {
+      if (ref) observer.observe(ref);
+    });
+
+    return () => observer.disconnect();
+  }, [visibleCards]);
+
   const styles = {
     servicesSection: {
       backgroundColor: '#000000',
@@ -101,6 +131,16 @@ function ServicesPage() {
       transition: 'all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275)',
       border: '1px solid #333333',
       overflow: 'hidden'
+    },
+    serviceCardHidden: {
+      opacity: '0',
+      transform: 'translateX(-50px) translateY(30px)',
+      transition: 'none'
+    },
+    serviceCardVisible: {
+      opacity: '1',
+      transform: 'translateX(0) translateY(0)',
+      transition: 'all 0.8s cubic-bezier(0.175, 0.885, 0.32, 1.275)'
     },
     serviceCardHovered: {
       transform: 'translateY(-15px) scale(1.02)',
@@ -181,107 +221,115 @@ function ServicesPage() {
       <SectionHeader title="Services" subtitle="The Services I Offer" />
       <div style={styles.container}>
         <div style={styles.servicesGrid}>
-          {services.map((service, index) => (
-            <div 
-              key={index} 
-              style={{
-                ...styles.serviceCard,
-                ...(hoveredCard === index ? styles.serviceCardHovered : {}),
-                boxShadow: hoveredCard === index 
-                  ? '0 25px 50px rgba(255,255,255,0.1), 0 0 0 1px rgba(255,255,255,0.1)' 
-                  : '0 10px 30px rgba(0,0,0,0.3)'
-              }}
-              onMouseEnter={() => setHoveredCard(index)}
-              onMouseLeave={() => setHoveredCard(null)}
-            >
-              {/* Top gradient line */}
+          {services.map((service, index) => {
+            const isVisible = visibleCards.includes(index);
+            const isHovered = hoveredCard === index;
+            
+            return (
               <div 
+                key={index} 
+                ref={el => cardRefs.current[index] = el}
+                data-card-index={index}
                 style={{
-                  ...styles.serviceCardBefore,
-                  background: hoveredCard === index ? 'linear-gradient(135deg, #ffffff, #cccccc)' : 'transparent'
+                  ...styles.serviceCard,
+                  ...(isVisible ? styles.serviceCardVisible : styles.serviceCardHidden),
+                  ...(isHovered && isVisible ? styles.serviceCardHovered : {}),
+                  boxShadow: isHovered && isVisible
+                    ? '0 25px 50px rgba(255,255,255,0.1), 0 0 0 1px rgba(255,255,255,0.1)' 
+                    : '0 10px 30px rgba(0,0,0,0.3)'
                 }}
-              />
-              
-              {/* Glow effect */}
-              <div 
-                style={{
-                  ...styles.glowEffect,
-                  ...(hoveredCard === index ? styles.glowEffectHovered : {})
-                }}
-              />
-              
-              {/* Icon container */}
-              <div 
-                style={{
-                  ...styles.iconContainer,
-                  ...(hoveredCard === index ? styles.iconContainerHovered : {})
-                }}
+                onMouseEnter={() => setHoveredCard(index)}
+                onMouseLeave={() => setHoveredCard(null)}
               >
-                <div style={styles.icon}>
-                  {service.icon}
+                {/* Top gradient line */}
+                <div 
+                  style={{
+                    ...styles.serviceCardBefore,
+                    background: isHovered ? 'linear-gradient(135deg, #ffffff, #cccccc)' : 'transparent'
+                  }}
+                />
+                
+                {/* Glow effect */}
+                <div 
+                  style={{
+                    ...styles.glowEffect,
+                    ...(isHovered ? styles.glowEffectHovered : {})
+                  }}
+                />
+                
+                {/* Icon container */}
+                <div 
+                  style={{
+                    ...styles.iconContainer,
+                    ...(isHovered ? styles.iconContainerHovered : {})
+                  }}
+                >
+                  <div style={styles.icon}>
+                    {service.icon}
+                  </div>
                 </div>
+                
+                {/* Title */}
+                <h3 
+                  style={{
+                    ...styles.serviceTitle,
+                    ...(isHovered ? styles.serviceTitleHovered : {})
+                  }}
+                >
+                  {service.title}
+                </h3>
+                
+                {/* Description */}
+                <p 
+                  style={{
+                    ...styles.serviceDescription,
+                    ...(isHovered ? styles.serviceDescriptionHovered : {})
+                  }}
+                >
+                  {service.description}
+                </p>
+                
+                {/* Floating particles effect */}
+                {isHovered && (
+                  <>
+                    <div style={{
+                      position: 'absolute',
+                      top: '20%',
+                      right: '15%',
+                      width: '4px',
+                      height: '4px',
+                      background: '#ffffff',
+                      borderRadius: '50%',
+                      animation: 'float 3s ease-in-out infinite',
+                      opacity: '0.6'
+                    }} />
+                    <div style={{
+                      position: 'absolute',
+                      bottom: '30%',
+                      left: '10%',
+                      width: '3px',
+                      height: '3px',
+                      background: '#ffffff',
+                      borderRadius: '50%',
+                      animation: 'float 2s ease-in-out infinite reverse',
+                      opacity: '0.4'
+                    }} />
+                    <div style={{
+                      position: 'absolute',
+                      top: '60%',
+                      right: '25%',
+                      width: '2px',
+                      height: '2px',
+                      background: '#ffffff',
+                      borderRadius: '50%',
+                      animation: 'float 2.5s ease-in-out infinite',
+                      opacity: '0.3'
+                    }} />
+                  </>
+                )}
               </div>
-              
-              {/* Title */}
-              <h3 
-                style={{
-                  ...styles.serviceTitle,
-                  ...(hoveredCard === index ? styles.serviceTitleHovered : {})
-                }}
-              >
-                {service.title}
-              </h3>
-              
-              {/* Description */}
-              <p 
-                style={{
-                  ...styles.serviceDescription,
-                  ...(hoveredCard === index ? styles.serviceDescriptionHovered : {})
-                }}
-              >
-                {service.description}
-              </p>
-              
-              {/* Floating particles effect */}
-              {hoveredCard === index && (
-                <>
-                  <div style={{
-                    position: 'absolute',
-                    top: '20%',
-                    right: '15%',
-                    width: '4px',
-                    height: '4px',
-                    background: '#ffffff',
-                    borderRadius: '50%',
-                    animation: 'float 3s ease-in-out infinite',
-                    opacity: '0.6'
-                  }} />
-                  <div style={{
-                    position: 'absolute',
-                    bottom: '30%',
-                    left: '10%',
-                    width: '3px',
-                    height: '3px',
-                    background: '#ffffff',
-                    borderRadius: '50%',
-                    animation: 'float 2s ease-in-out infinite reverse',
-                    opacity: '0.4'
-                  }} />
-                  <div style={{
-                    position: 'absolute',
-                    top: '60%',
-                    right: '25%',
-                    width: '2px',
-                    height: '2px',
-                    background: '#ffffff',
-                    borderRadius: '50%',
-                    animation: 'float 2.5s ease-in-out infinite',
-                    opacity: '0.3'
-                  }} />
-                </>
-              )}
-            </div>
-          ))}
+            );
+          })}
         </div>
       </div>
       

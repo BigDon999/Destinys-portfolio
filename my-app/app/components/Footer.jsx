@@ -20,9 +20,8 @@ export default function Footer() {
         backgroundPosition: "center",
         backgroundRepeat: "no-repeat",
         color: "white",
-        padding: "2rem 1rem",
+        padding: "3rem 2rem",
         marginTop: "2rem",
-        maxWidth: "100vw",
         width: "100%",
         boxSizing: "border-box",
       }}
@@ -35,141 +34,195 @@ export default function Footer() {
           left: 0,
           width: "100%",
           height: "100%",
-          background: "rgba(0,0,0,0.8)",
+          background: "rgba(0,0,0,0.85)",
           zIndex: 1,
         }}
       />
+      
       <div
         style={{
           position: "relative",
           zIndex: 2,
           display: "flex",
-          flexWrap: "wrap",
           justifyContent: "center",
           alignItems: "flex-start",
-          maxWidth: "100vw",
+          maxWidth: "900px",
           width: "100%",
           margin: "0 auto",
-          gap: "1.2rem",
+          gap: "4rem",
+          flexWrap: "wrap",
           boxSizing: "border-box",
         }}
       >
-        {/* Logo / About */}
-        <div style={{ flex: "1 1 250px", textAlign: "left" }}>
-          <h2 style={{ fontSize: "1.5rem", fontWeight: "bold" }}>
+        
+        {/* About Section */}
+        <div style={{ flex: "1 1 250px", minWidth: "250px" }}>
+          <h2 style={{ 
+            fontSize: "1.8rem", 
+            fontWeight: "bold", 
+            marginBottom: "1rem",
+            color: "#fff"
+          }}>
             Destiny Ekine
           </h2>
-          <p style={{ marginTop: "0.5rem", lineHeight: "1.5" }}>
-            Frontend Developer which is passionate about building beautiful{" "}
-            <br /> and functional web applications.
+          <p style={{ 
+            lineHeight: "1.6", 
+            color: "#d1d5db",
+            fontSize: "0.95rem",
+            maxWidth: "280px"
+          }}>
+            Frontend Developer passionate about building beautiful and functional web applications.
           </p>
         </div>
-        {/* Quick Links */}
-        <div style={{ flex: "1 1 200px", textAlign: "left" }}>
-          <h3 style={{ fontSize: "1.2rem", fontWeight: "bold" }}>
+
+        {/* Quick Links Section */}
+        <div style={{ flex: "1 1 200px", minWidth: "200px" }}>
+          <h3 style={{ 
+            fontSize: "1.3rem", 
+            fontWeight: "600", 
+            marginBottom: "1.2rem",
+            color: "#fff"
+          }}>
             Quick Links
           </h3>
-          <ul style={{ marginTop: "0.5rem", listStyle: "none", padding: 0 }}>
-            {navLinks.map(({ id, link, caption }) => (
-              <li key={id} style={{ marginBottom: "0.5rem" }}>
-                {caption === "Contact" ? (
-                  <a
-                    href={link}
-                    style={{
-                      backgroundColor: "#222",
-                      color: "#fff",
-                      borderRadius: "16px",
-                      padding: "0.6rem 1.4rem",
-                      fontWeight: 600,
-                      textDecoration: "none",
-                      display: "inline-block",
-                      transition: "background 0.3s, color 0.3s",
-                    }}
-                    className="footer-contact-btn"
-                  >
-                    {caption}
-                  </a>
-                ) : (
-                  <a
-                    href={link}
-                    style={{
-                      color: "#ccc",
-                      textDecoration: "none",
-                      fontSize: "0.95rem",
-                      fontWeight: 500,
-                      padding: "0.5rem 0.8rem",
-                      borderRadius: "8px",
-                      transition: "background 0.3s, color 0.3s",
-                      display: "inline-block",
-                    }}
-                    className="footer-nav-link"
-                  >
-                    {caption}
-                  </a>
-                )}
-              </li>
-            ))}
-          </ul>
-        </div>
-        {/* Contact Info */}
-        <div style={{ flex: "1 1 200px", textAlign: "left" }}>
-          <h3 style={{ fontSize: "1.2rem", fontWeight: "bold" }}>Contact</h3>
-          <ul style={{ marginTop: "0.5rem", listStyle: "none", padding: 0 }}>
-            <li
-              style={{
-                display: "flex",
-                alignItems: "center",
-                marginBottom: "0.5rem",
-              }}
-            >
-              <FaPhone style={{ marginRight: "0.5rem" }} /> +234 805 107 4795
-            </li>
-            <li
-              style={{
-                display: "flex",
-                alignItems: "center",
-                marginBottom: "0.5rem",
-              }}
-            >
-              <FaEnvelope style={{ marginRight: "0.5rem" }} />{" "}
-              destinyekine9@gmail.com
-            </li>
-            <li
-              style={{
-                display: "flex",
-                alignItems: "center",
-              }}
-            >
-              <FaMapMarkerAlt style={{ marginRight: "0.5rem" }} /> Port
-              Harcourt, Nigeria
+          <ul style={{ 
+            listStyle: "none", 
+            padding: 0, 
+            margin: 0,
+            display: "flex",
+            flexDirection: "column",
+            gap: "0.4rem"
+          }}>
+            <li><a href="/" style={linkStyle}>Home</a></li>
+            <li><a href="/about" style={linkStyle}>About</a></li>
+            <li><a href="/services" style={linkStyle}>Services</a></li>
+            <li><a href="/projects" style={linkStyle}>Projects</a></li>
+            <li>
+              <a 
+                href="/contact" 
+                style={{
+                  backgroundColor: "#374151",
+                  color: "#fff",
+                  borderRadius: "16px",
+                  padding: "0.6rem 1.3rem",
+                  fontWeight: "600",
+                  textDecoration: "none",
+                  display: "inline-block",
+                  transition: "all 0.3s ease",
+                  fontSize: "0.95rem",
+                  marginTop: "0.3rem"
+                }}
+                onMouseEnter={(e) => {
+                  e.target.style.backgroundColor = "#4b5563";
+                  e.target.style.transform = "translateY(-1px)";
+                }}
+                onMouseLeave={(e) => {
+                  e.target.style.backgroundColor = "#374151";
+                  e.target.style.transform = "translateY(0)";
+                }}
+              >
+                Contact
+              </a>
             </li>
           </ul>
         </div>
+
+        {/* Contact Section */}
+        <div style={{ flex: "1 1 200px", minWidth: "200px" }}>
+          <h3 style={{ 
+            fontSize: "1.3rem", 
+            fontWeight: "600", 
+            marginBottom: "1.2rem",
+            color: "#fff"
+          }}>
+            Contact
+          </h3>
+          <div style={{ display: "flex", flexDirection: "column", gap: "0.8rem" }}>
+            <div style={{ display: "flex", alignItems: "center" }}>
+              <div style={{ 
+                width: "20px", 
+                display: "flex", 
+                justifyContent: "flex-start",
+                color: "#9ca3af"
+              }}>
+                <FaPhone />
+              </div>
+              <span style={{ 
+                marginLeft: "0.8rem", 
+                color: "#d1d5db",
+                fontSize: "0.95rem"
+              }}>
+                +234 805 107 4795
+              </span>
+            </div>
+            
+            <div style={{ display: "flex", alignItems: "center" }}>
+              <div style={{ 
+                width: "20px", 
+                display: "flex", 
+                justifyContent: "flex-start",
+                color: "#9ca3af"
+              }}>
+                <FaEnvelope />
+              </div>
+              <span style={{ 
+                marginLeft: "0.8rem", 
+                color: "#d1d5db",
+                fontSize: "0.95rem"
+              }}>
+                destinyekine9@gmail.com
+              </span>
+            </div>
+            
+            <div style={{ display: "flex", alignItems: "center" }}>
+              <div style={{ 
+                width: "20px", 
+                display: "flex", 
+                justifyContent: "flex-start",
+                color: "#9ca3af"
+              }}>
+                <FaMapMarkerAlt />
+              </div>
+              <span style={{ 
+                marginLeft: "0.8rem", 
+                color: "#d1d5db",
+                fontSize: "0.95rem"
+              }}>
+                Port Harcourt, Nigeria
+              </span>
+            </div>
+          </div>
+        </div>
+
       </div>
-      {/* Copyright Bar */}
+
+      {/* Copyright */}
       <div
         style={{
+          position: "relative",
+          zIndex: 2,
           width: "100%",
           textAlign: "center",
-          padding: "1rem 0 0.5rem 0",
-          color: "#ccc",
-          fontSize: "0.95rem",
-          letterSpacing: "0.02em",
-          zIndex: 2,
-          position: "relative",
+          paddingTop: "2.5rem",
+          marginTop: "2rem",
+          borderTop: "1px solid rgba(255, 255, 255, 0.1)",
+          color: "#9ca3af",
+          fontSize: "0.9rem",
+          letterSpacing: "0.025em",
         }}
       >
         © {new Date().getFullYear()} Destiny Ekine. All rights reserved.
       </div>
-      <style jsx global>{`
-        .footer-nav-link:hover {
-          color: #fff !important;
-          background-color: #222 !important;
-        }
-        .footer-contact-btn:hover {
-          background-color: #444 !important;
-        }
-      `}</style>
     </footer>
   );
 }
+
+const linkStyle = {
+  color: "#d1d5db",
+  textDecoration: "none",
+  fontSize: "0.95rem",
+  fontWeight: "500",
+  padding: "0.3rem 0",
+  display: "block",
+  transition: "all 0.3s ease",
+};
