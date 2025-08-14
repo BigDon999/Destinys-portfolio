@@ -1,6 +1,6 @@
 .contactSection {
   padding: 5rem 0;
-  background-color: #f9fafb;
+  background-color: #111;
   min-height: 100vh;
 }
 
@@ -13,24 +13,29 @@
 .sectionTitle {
   font-size: 2.5rem;
   text-align: center;
-  color: #111827;
+  color: #fff;
   margin-bottom: 1rem;
 }
 
 .sectionSubtitle {
   text-align: center;
-  color: #6b7280;
+  color: #b0b0b0;
   margin-bottom: 3rem;
   font-size: 1.1rem;
 }
 
 .contactContent {
+  background-color: #111;
+  color: #fff;
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
   gap: 3rem;
 }
 
 .contactInfo {
+  text-align: center;
+  color: #fff;
+  margin-bottom: 1rem;
   display: flex;
   flex-direction: column;
   gap: 2rem;
@@ -40,31 +45,41 @@
   display: flex;
   align-items: flex-start;
   gap: 1.5rem;
-  background: white;
+  background: linear-gradient(145deg, #181818, #222);
   padding: 1.5rem;
-  border-radius: 8px;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
-  transition: transform 0.3s ease;
+  border-radius: 12px;
+  box-shadow:
+    8px 8px 16px rgba(0, 0, 0, 0.4),
+    -8px -8px 16px rgba(255, 255, 255, 0.02);
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+  color: #b0b0b0;
 }
 
 .infoItem:hover {
-  transform: translateY(-5px);
+  transform: translateY(-8px) scale(1.02);
+  box-shadow:
+    12px 20px 32px rgba(0, 0, 0, 0.6),
+    -12px -12px 24px rgba(255, 255, 255, 0.03),
+    0 0 20px rgba(255, 255, 255, 0.05);
+  border-color: rgba(255, 255, 255, 0.1);
+  background: linear-gradient(145deg, #181818, #222);
 }
 
 .contactIcon {
   font-size: 1.5rem;
-  color: #111827;
+  color: #fff;
   margin-top: 0.3rem;
 }
 
 .infoItem h3 {
   font-size: 1.2rem;
-  color: #111827;
+  color: #fff;
   margin-bottom: 0.5rem;
 }
 
 .infoItem p {
-  color: #6b7280;
+  color: #b0b0b0;
   line-height: 1.6;
 }
 
@@ -72,48 +87,63 @@
   display: flex;
   gap: 1.5rem;
   margin-top: 1rem;
+  color: #b0b0b0;
 }
 
 .socialLinks a {
-  color: #6b7280;
+  color: #b0b0b0;
   font-size: 1.5rem;
   transition: color 0.3s ease;
 }
 
 .socialLinks a:hover {
-  color: #111827;
+  color: #fff;
 }
 
 .contactForm {
-  background: white;
-  padding: 2rem;
-  border-radius: 8px;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+ background: linear-gradient(145deg, #181818, #222);
+  border-radius: 1rem;
+  box-shadow: 0 2px 16px rgba(0, 0, 0, 0.3);
+  padding: 2rem 2.5rem 2rem 2rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  width: 100%;
+  max-width: 400px;
+  margin: 0 auto;
+  align-items: center;
 }
 
 .formGroup {
-  margin-bottom: 1.5rem;
-}
-
-.formGroup input,
-.formGroup textarea {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
   width: 100%;
-  padding: 0.8rem 1rem;
-  border: 1px solid #e5e7eb;
-  border-radius: 6px;
-  font-size: 1rem;
-  transition: border-color 0.3s ease;
+  align-items: center;
 }
 
-.formGroup input:focus,
-.formGroup textarea:focus {
+.contactForm input,
+.contactForm textarea {
+  width: 100%;
+  padding: 0.75rem 1.5rem 0.75rem 1rem;
+  border-radius: 0.5rem;
+  border: none;
+  background: #272727;
+  color: #fff;
+  font-size: 1rem;
   outline: none;
-  border-color: #111827;
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.15);
+  transition: box-shadow 0.2s;
+}
+
+.contactForm input:focus,
+.contactForm textarea:focus {
+  box-shadow: 0 0 0 3px rgba(255, 255, 255, 0.2);
 }
 
 .submitBtn {
-  background: #111827;
-  color: white;
+  background: #000000;
+  color: #fff;
   border: none;
   padding: 0.8rem 2rem;
   font-size: 1rem;
@@ -123,14 +153,14 @@
 }
 
 .submitBtn:hover {
-  background: #000000;
+  background: #181818;
 }
 
 @media (max-width: 768px) {
   .sectionTitle {
     font-size: 2rem;
   }
-  
+
   .contactContent {
     grid-template-columns: 1fr;
   }

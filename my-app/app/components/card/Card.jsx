@@ -1,10 +1,14 @@
-import React, {children} from 'react';
+import React, { children } from "react";
 import styles from "./card.module.css";
 
-
-function Card({ children, className = ''}) {
+function Card({ children, className = "" }) {
   return (
-    <article className={`${styles.card} ${className}`}>{children}</article>
+    <article
+      className={`${styles.card} ${className}`}
+      style={{ maxWidth: "100vw", width: "100%", boxSizing: "border-box" }}
+    >
+      {children}
+    </article>
   );
 }
 

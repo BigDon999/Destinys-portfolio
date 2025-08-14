@@ -1,16 +1,16 @@
 import { Inter } from "next/font/google";
-import { config } from '@fortawesome/fontawesome-svg-core';
-import '@fortawesome/fontawesome-svg-core/styles.css';
-import Navbar from "./components/navbar/Navbar";
-import Footer from "./components/footer/Footer";
+import { config } from "@fortawesome/fontawesome-svg-core";
+import "@fortawesome/fontawesome-svg-core/styles.css";
+import Navbar from "./components/Navbar";
+import Footer from "./components/Footer";
 import "./globals.css";
 
 // Prevent Font Awesome from adding its CSS since we did it manually above
 config.autoAddCss = false;
 
-const inter = Inter({ 
+const inter = Inter({
   subsets: ["latin"],
-  display: 'swap'
+  display: "swap",
 });
 
 export const metadata = {

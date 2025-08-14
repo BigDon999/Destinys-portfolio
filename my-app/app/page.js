@@ -1,13 +1,13 @@
 import React from "react";
-import Header from "./components/header/Header";
-import Services from "./components/services/ServicesSection";
-import Testimonials from "./components/testimonials/Testimonials";
+import Hero from "./components/Hero";
+import Services from "./components/Services";
+import Testimonials from "./components/Testimonials";
 
 export default function Home() {
   return (
     <>
       <main>
-        <Header />
+        <Hero />
         <Services />
         <Testimonials />
       </main>

@@ -1,6 +1,12 @@
+@import url("https://fonts.googleapis.com/css2?family=Nico+Moji&display=swap");
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+
 :root {
-  --foreground: #000;
-  --background: #fff;
+  --foreground: #fff;
+  --background: #000;
   --navbar-height: 60px;
 }
 
@@ -10,7 +16,8 @@
 }
 
 /* Base reset */
-html, body {
+html,
+body {
   margin: 0;
   padding: 0;
   width: 100%;
@@ -38,8 +45,7 @@ nav {
 
 /* Main content spacing */
 main {
-  margin-top: var(--navbar-height);
-  min-height: calc(100vh - var(--navbar-height));
+  min-height: 100vh;
 }
 
 /* Mobile optimizations */
@@ -52,7 +58,8 @@ main {
 
 /* Extra small devices */
 @media (max-width: 480px) {
-  html, body {
+  html,
+  body {
     position: relative;
     max-width: 100vw;
   }
