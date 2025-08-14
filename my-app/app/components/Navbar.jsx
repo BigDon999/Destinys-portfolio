@@ -222,6 +222,13 @@ export default function Navbar() {
         html {
           scroll-behavior: smooth;
         }
+
+        .mobile-button:focus,
+        .mobile-button:active,
+        .mobile-button:hover {
+          outline: none !important;
+          box-shadow: none !important;
+        }
       `}</style>
 
       <nav style={navbarStyle}>
