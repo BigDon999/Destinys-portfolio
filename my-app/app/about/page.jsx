@@ -44,14 +44,30 @@ function AboutPage() {
   const [hoveredImage, setHoveredImage] = useState(false);
   const [hoveredSections, setHoveredSections] = useState({});
   const [hoveredItems, setHoveredItems] = useState({});
+  const [isMobile, setIsMobile] = useState(false);
   
   const sectionRef = useRef(null);
   const imageRef = useRef(null);
   const bioRef = useRef(null);
   const skillRefs = useRef([]);
 
+  // Detect mobile devices
+  useEffect(() => {
+    const checkMobile = () => {
+      setIsMobile(window.innerWidth <= 768 || /Android|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent));
+    };
+    
+    checkMobile();
+    window.addEventListener('resize', checkMobile);
+    return () => window.removeEventListener('resize', checkMobile);
+  }, []);
+
   useEffect(() => {
     const observers = [];
+    
+    // Use more aggressive settings for mobile
+    const mobileThreshold = isMobile ? 0.1 : 0.2;
+    const sectionThreshold = isMobile ? 0.1 : 0.3;
 
     // Main section observer
     const mainObserver = new IntersectionObserver(
@@ -60,10 +76,10 @@ function AboutPage() {
           setIsVisible(true);
         }
       },
-      { threshold: 0.2 }
+      { threshold: mobileThreshold }
     );
 
-    // Individual sections observer
+    // Individual sections observer with reduced threshold for mobile
     const sectionsObserver = new IntersectionObserver(
       (entries) => {
         entries.forEach(entry => {
@@ -73,7 +89,7 @@ function AboutPage() {
           }
         });
       },
-      { threshold: 0.3 }
+      { threshold: sectionThreshold, rootMargin: isMobile ? '50px 0px' : '0px' }
     );
 
     if (sectionRef.current) {
@@ -100,10 +116,22 @@ function AboutPage() {
 
     observers.push(sectionsObserver);
 
+    // For mobile, show all sections immediately after a short delay
+    if (isMobile) {
+      const timer = setTimeout(() => {
+        setVisibleSections(new Set(['image', 'bio', 'skill-0', 'skill-1', 'skill-2', 'skill-3']));
+      }, 500);
+      
+      return () => {
+        clearTimeout(timer);
+        observers.forEach(observer => observer.disconnect());
+      };
+    }
+
     return () => {
       observers.forEach(observer => observer.disconnect());
     };
-  }, []);
+  }, [isMobile]);
 
   const styles = {
     aboutSection: {
@@ -131,9 +159,9 @@ function AboutPage() {
       display: 'flex',
       justifyContent: 'center',
       opacity: visibleSections.has('image') ? 1 : 0,
-      transform: visibleSections.has('image') ? 'translateX(0) scale(1)' : 'translateX(-100px) scale(0.9)',
-      transition: 'all 1s cubic-bezier(0.25, 0.46, 0.45, 0.94)',
-      transitionDelay: '0.3s'
+      transform: visibleSections.has('image') ? 'translateX(0) scale(1)' : isMobile ? 'translateY(20px) scale(0.95)' : 'translateX(-100px) scale(0.9)',
+      transition: isMobile ? 'all 0.5s ease-out' : 'all 1s cubic-bezier(0.25, 0.46, 0.45, 0.94)',
+      transitionDelay: isMobile ? '0.1s' : '0.3s'
     },
     profileImage: {
       width: '100%',
@@ -142,21 +170,21 @@ function AboutPage() {
       borderRadius: '20px',
       border: '3px solid #333333',
       boxShadow: '0 20px 40px rgba(255, 255, 255, 0.1)',
-      transition: 'all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94)',
+      transition: isMobile ? 'all 0.2s ease' : 'all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94)',
       cursor: 'pointer',
       filter: 'brightness(0.9) contrast(1.1)'
     },
     profileImageHover: {
-      transform: 'translateY(-15px) scale(1.02)',
+      transform: isMobile ? 'scale(1.01)' : 'translateY(-15px) scale(1.02)',
       boxShadow: '0 30px 60px rgba(255, 255, 255, 0.2)',
       filter: 'brightness(1) contrast(1.2)'
     },
     bioContent: {
       lineHeight: '1.7',
       opacity: visibleSections.has('bio') ? 1 : 0,
-      transform: visibleSections.has('bio') ? 'translateX(0)' : 'translateX(100px)',
-      transition: 'all 1s cubic-bezier(0.25, 0.46, 0.45, 0.94)',
-      transitionDelay: '0.5s'
+      transform: visibleSections.has('bio') ? 'translateX(0)' : isMobile ? 'translateY(20px)' : 'translateX(100px)',
+      transition: isMobile ? 'all 0.5s ease-out' : 'all 1s cubic-bezier(0.25, 0.46, 0.45, 0.94)',
+      transitionDelay: isMobile ? '0.2s' : '0.5s'
     },
     bioTitle: {
       fontSize: 'clamp(2rem, 4vw, 2.8rem)',
@@ -180,12 +208,12 @@ function AboutPage() {
       backgroundColor: '#111111',
       borderRadius: '15px',
       border: '1px solid #333333',
-      transition: 'all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94)',
+      transition: isMobile ? 'all 0.2s ease' : 'all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94)',
       backdropFilter: 'blur(10px)',
       position: 'relative'
     },
     skillSectionHover: {
-      transform: 'translateY(-8px) scale(1.02)',
+      transform: isMobile ? 'scale(1.01)' : 'translateY(-8px) scale(1.02)',
       borderColor: '#555555',
       boxShadow: '0 15px 30px rgba(255, 255, 255, 0.1)'
     },
@@ -207,12 +235,12 @@ function AboutPage() {
       borderBottom: '1px solid #222222',
       color: '#bbbbbb',
       fontSize: '1rem',
-      transition: 'all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94)'
+      transition: isMobile ? 'color 0.2s ease' : 'all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94)'
     },
     skillListItemHover: {
       color: '#ffffff',
-      paddingLeft: '15px',
-      transform: 'translateX(5px)'
+      paddingLeft: isMobile ? '5px' : '15px',
+      transform: isMobile ? 'none' : 'translateX(5px)'
     },
     skillListColumns: {
       display: 'grid',
@@ -244,9 +272,9 @@ function AboutPage() {
     transform: visibleSections.has(`skill-${index}`) 
       ? 'translateY(0) scale(1)' 
       : 'translateY(50px) scale(0.95)',
-    transition: 'all 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94)',
-    transitionDelay: `${0.7 + index * 0.2}s`,
-    ...(hoveredSections[`section-${index}`] ? styles.skillSectionHover : {})
+    transition: isMobile ? 'all 0.4s ease-out' : 'all 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94)',
+    transitionDelay: isMobile ? `${0.1 + index * 0.1}s` : `${0.7 + index * 0.2}s`,
+    ...(hoveredSections[`section-${index}`] && !isMobile ? styles.skillSectionHover : {})
   });
 
   const skills = [
@@ -377,40 +405,62 @@ function AboutPage() {
             grid-template-columns: 1fr !important;
             gap: 40px !important;
           }
+          
+          /* Disable complex animations on mobile */
+          .skill-section::before {
+            display: none;
+          }
+          
+          .closing-statement::before {
+            display: none;
+          }
+        }
+
+        /* Reduce motion for users who prefer it */
+        @media (prefers-reduced-motion: reduce) {
+          * {
+            animation-duration: 0.01ms !important;
+            animation-iteration-count: 1 !important;
+            transition-duration: 0.01ms !important;
+          }
         }
       `}</style>
 
       <section ref={sectionRef} style={styles.aboutSection}>
-        {/* Background decorative elements */}
-        <div
-          style={{
-            position: 'absolute',
-            top: '20%',
-            right: '10%',
-            width: '300px',
-            height: '300px',
-            background: 'radial-gradient(circle, rgba(255,255,255,0.03) 0%, transparent 70%)',
-            borderRadius: '50%',
-            pointerEvents: 'none',
-            opacity: isVisible ? 0.5 : 0,
-            transition: 'opacity 2s ease'
-          }}
-        />
-        <div
-          style={{
-            position: 'absolute',
-            bottom: '20%',
-            left: '10%',
-            width: '200px',
-            height: '200px',
-            background: 'radial-gradient(circle, rgba(255,255,255,0.02) 0%, transparent 70%)',
-            borderRadius: '50%',
-            pointerEvents: 'none',
-            opacity: isVisible ? 0.3 : 0,
-            transition: 'opacity 2s ease',
-            transitionDelay: '0.5s'
-          }}
-        />
+        {/* Background decorative elements - simplified for mobile */}
+        {!isMobile && (
+          <>
+            <div
+              style={{
+                position: 'absolute',
+                top: '20%',
+                right: '10%',
+                width: '300px',
+                height: '300px',
+                background: 'radial-gradient(circle, rgba(255,255,255,0.03) 0%, transparent 70%)',
+                borderRadius: '50%',
+                pointerEvents: 'none',
+                opacity: isVisible ? 0.5 : 0,
+                transition: 'opacity 2s ease'
+              }}
+            />
+            <div
+              style={{
+                position: 'absolute',
+                bottom: '20%',
+                left: '10%',
+                width: '200px',
+                height: '200px',
+                background: 'radial-gradient(circle, rgba(255,255,255,0.02) 0%, transparent 70%)',
+                borderRadius: '50%',
+                pointerEvents: 'none',
+                opacity: isVisible ? 0.3 : 0,
+                transition: 'opacity 2s ease',
+                transitionDelay: '0.5s'
+              }}
+            />
+          </>
+        )}
 
         <SectionHeader title="About Me" subtitle="Who I am and What I do" isVisible={isVisible} />
         
@@ -422,10 +472,10 @@ function AboutPage() {
                 alt="Destiny Ekine - Designer and Developer" 
                 style={{
                   ...styles.profileImage,
-                  ...(hoveredImage ? styles.profileImageHover : {})
+                  ...(hoveredImage && !isMobile ? styles.profileImageHover : {})
                 }}
-                onMouseEnter={() => setHoveredImage(true)}
-                onMouseLeave={() => setHoveredImage(false)}
+                onMouseEnter={() => !isMobile && setHoveredImage(true)}
+                onMouseLeave={() => !isMobile && setHoveredImage(false)}
               />
             </div>
             
@@ -445,8 +495,8 @@ function AboutPage() {
                   ref={(el) => skillRefs.current[index] = el}
                   style={getSkillSectionStyle(index)}
                   className="skill-section"
-                  onMouseEnter={() => setHoveredSections({...hoveredSections, [`section-${index}`]: true})}
-                  onMouseLeave={() => setHoveredSections({...hoveredSections, [`section-${index}`]: false})}
+                  onMouseEnter={() => !isMobile && setHoveredSections({...hoveredSections, [`section-${index}`]: true})}
+                  onMouseLeave={() => !isMobile && setHoveredSections({...hoveredSections, [`section-${index}`]: false})}
                 >
                   <h3 style={{...styles.skillTitle, position: 'relative'}}>
                     <span style={{
@@ -476,10 +526,10 @@ function AboutPage() {
                           key={itemIndex}
                           style={{
                             ...styles.skillListItem,
-                            ...(hoveredItems[itemKey] ? styles.skillListItemHover : {})
+                            ...(hoveredItems[itemKey] && !isMobile ? styles.skillListItemHover : {})
                           }}
-                          onMouseEnter={() => setHoveredItems({...hoveredItems, [itemKey]: true})}
-                          onMouseLeave={() => setHoveredItems({...hoveredItems, [itemKey]: false})}
+                          onMouseEnter={() => !isMobile && setHoveredItems({...hoveredItems, [itemKey]: true})}
+                          onMouseLeave={() => !isMobile && setHoveredItems({...hoveredItems, [itemKey]: false})}
                         >
                           {itemText.includes(':') ? (
                             <>
@@ -501,7 +551,7 @@ function AboutPage() {
                   ...styles.closingStatement,
                   opacity: visibleSections.has('skill-3') ? 1 : 0,
                   transform: visibleSections.has('skill-3') ? 'translateY(0)' : 'translateY(30px)',
-                  transitionDelay: '1.5s'
+                  transitionDelay: isMobile ? '0.8s' : '1.5s'
                 }}
                 className="closing-statement"
               >

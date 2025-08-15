@@ -83,7 +83,6 @@ export default function Navbar() {
     fontWeight: 700,
     color: "#111",
     textDecoration: "none",
-    fontFamily: "'Nico Moji', sans-serif",
     letterSpacing: "-0.5px",
   };
 
@@ -234,7 +233,7 @@ export default function Navbar() {
       <nav style={navbarStyle}>
         <div style={containerStyle}>
           {/* Logo */}
-          <Link href="/" style={logoStyle}>
+          <Link href="/" className="logo-nicomoji" style={logoStyle}>
             Destiny Ekine
           </Link>
 

@@ -78,7 +78,7 @@ export default function Hero() {
       boxSizing: "border-box",
     },
     header: {
-      fontSize: "3.4rem",
+      fontSize: "3.1rem",
       fontWeight: "bold",
       marginBottom: "1rem",
       maxWidth: "600px",
